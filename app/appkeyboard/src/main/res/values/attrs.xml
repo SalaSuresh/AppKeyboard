@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="AppKeyboard">
+        <attr name="showSymbols" format="boolean" />
+        <attr name="showCaps" format="boolean" />
+        <attr name="showCapsButton" format="boolean" />
+    </declare-styleable>
+</resources>

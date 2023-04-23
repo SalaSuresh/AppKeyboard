@@ -7,7 +7,7 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import com.suresh.appkeyboard.AppKeyboard
 
-
+//TODO: Need to remove unused modules.
 class MainActivity : AppCompatActivity() {
     lateinit var editTextInput: EditText
     override fun onCreate(savedInstanceState: Bundle?) {

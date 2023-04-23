@@ -15,5 +15,3 @@ dependencyResolutionManagement {
 rootProject.name = "AppKeyboard"
 include ':app'
 include ':app:appkeyboard'
-include ':app:appkeyboard2'
-include ':app:appkeyboard3'

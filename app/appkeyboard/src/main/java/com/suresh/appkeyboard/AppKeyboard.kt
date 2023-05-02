@@ -16,8 +16,6 @@ import com.google.android.material.button.MaterialButton
 class AppKeyboard(context: Context, attributeSet: AttributeSet) :
     LinearLayout(context, attributeSet), View.OnClickListener {
     private var inputConnection: InputConnection? = null
-//    private var textSize = 20.0f
-//    private var textSizeSmall = 20.0f
 
     private val showSymbols: Boolean
     private val showCaps: Boolean
@@ -134,8 +132,8 @@ class AppKeyboard(context: Context, attributeSet: AttributeSet) :
 
     private fun createLowerCaseRows(): List<LinearLayout> {
         val rowCharOne = ArrayList<View>()
-        rowCharOne.add(createButton("a", Color.WHITE, true, ""))
-        rowCharOne.add(createButton("z", Color.WHITE, true, ""))
+        rowCharOne.add(createButton("q", Color.WHITE, true, ""))
+        rowCharOne.add(createButton("w", Color.WHITE, true, ""))
         rowCharOne.add(createButton("e", Color.WHITE, true, ""))
         rowCharOne.add(createButton("r", Color.WHITE, true, ""))
         rowCharOne.add(createButton("t", Color.WHITE, true, ""))
@@ -146,7 +144,7 @@ class AppKeyboard(context: Context, attributeSet: AttributeSet) :
         rowCharOne.add(createButton("p", Color.WHITE, true, ""))
 
         val rowCharTwo = ArrayList<View>()
-        rowCharTwo.add(createButton("q", Color.WHITE, true, ""))
+        rowCharTwo.add(createButton("a", Color.WHITE, true, ""))
         rowCharTwo.add(createButton("s", Color.WHITE, true, ""))
         rowCharTwo.add(createButton("d", Color.WHITE, true, ""))
         rowCharTwo.add(createButton("f", Color.WHITE, true, ""))
@@ -155,26 +153,34 @@ class AppKeyboard(context: Context, attributeSet: AttributeSet) :
         rowCharTwo.add(createButton("j", Color.WHITE, true, ""))
         rowCharTwo.add(createButton("k", Color.WHITE, true, ""))
         rowCharTwo.add(createButton("l", Color.WHITE, true, ""))
-        rowCharTwo.add(createButton("m", Color.WHITE, true, ""))
 
         val rowCharThree = ArrayList<View>()
         if (showCapsButton)
-            rowCharThree.add(createButton("ABC", Color.DKGRAY, false, ""))
-        if (showSymbols)
-            rowCharThree.add(createButton("? è", Color.DKGRAY, false, ""))
-        rowCharThree.add(createButton("w", Color.WHITE, true, ""))
+            rowCharThree.add(createButton("⇪", Color.DKGRAY, false, ""))
+        rowCharThree.add(createButton("z", Color.WHITE, true, ""))
         rowCharThree.add(createButton("x", Color.WHITE, true, ""))
         rowCharThree.add(createButton("c", Color.WHITE, true, ""))
         rowCharThree.add(createButton("v", Color.WHITE, true, ""))
         rowCharThree.add(createButton("b", Color.WHITE, true, ""))
         rowCharThree.add(createButton("n", Color.WHITE, true, ""))
+        rowCharThree.add(createButton("m", Color.WHITE, true, ""))
         rowCharThree.add(createButton("⌫", Color.DKGRAY, false, ""))
+
+        val rowCharFour = ArrayList<View>()
+        if (showSymbols)
+            rowCharFour.add(createButton("? ;", Color.DKGRAY, false, ""))
+        rowCharFour.add(createButton(",", Color.WHITE, true, ""))
+        rowCharFour.add(createButton("\u263A", Color.WHITE, true, ""))
+        rowCharFour.add(createButton(" ", Color.WHITE, true, ""))
+        rowCharFour.add(createButton(".", Color.WHITE, true, ""))
+        rowCharFour.add(createButton("\u21B5", Color.WHITE, true, ""))
 
         val rows = ArrayList<LinearLayout>()
         rows.add(createNumbersRow())
         rows.add(createRow(rowCharOne))
         rows.add(createRow(rowCharTwo))
         rows.add(createRow(rowCharThree))
+        rows.add(createRow(rowCharFour))
 
         return rows
     }

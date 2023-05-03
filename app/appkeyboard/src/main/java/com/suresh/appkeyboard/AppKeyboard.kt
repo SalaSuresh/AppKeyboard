@@ -5,12 +5,12 @@ import android.content.res.ColorStateList
 import android.graphics.Color
 import android.text.TextUtils
 import android.util.AttributeSet
-import android.util.Log
 import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
 import android.view.inputmethod.InputConnection
 import android.widget.LinearLayout
+import android.widget.Toast
 import com.google.android.material.button.MaterialButton
 
 class AppKeyboard(context: Context, attributeSet: AttributeSet) :
@@ -101,7 +101,14 @@ class AppKeyboard(context: Context, attributeSet: AttributeSet) :
 
         val rowCharThree = ArrayList<View>()
         if (showCapsButton)
-            rowCharThree.add(createButton("⇧", Color.DKGRAY, false, ""))
+            rowCharThree.add(
+                createButton(
+                    KeyboardConstants.SYMBOL_UP_ARROW,
+                    Color.DKGRAY,
+                    false,
+                    ""
+                )
+            )
         rowCharThree.add(createButton("Z", Color.WHITE, true, ""))
         rowCharThree.add(createButton("X", Color.WHITE, true, ""))
         rowCharThree.add(createButton("C", Color.WHITE, true, ""))
@@ -109,16 +116,16 @@ class AppKeyboard(context: Context, attributeSet: AttributeSet) :
         rowCharThree.add(createButton("B", Color.WHITE, true, ""))
         rowCharThree.add(createButton("N", Color.WHITE, true, ""))
         rowCharThree.add(createButton("M", Color.WHITE, true, ""))
-        rowCharThree.add(createButton("⌫", Color.DKGRAY, false, ""))
+        rowCharThree.add(createButton(KeyboardConstants.SYMBOL_BACKSPACE, Color.DKGRAY, false, ""))
 
         val rowCharFour = ArrayList<View>()
         if (showSymbols)
             rowCharFour.add(createButton("? ;", Color.DKGRAY, false, ""))
         rowCharFour.add(createButton(",", Color.WHITE, true, ""))
-        rowCharFour.add(createButton("\u263A", Color.WHITE, true, ""))
-        rowCharFour.add(createButton(" ", Color.WHITE, true, ""))
+        rowCharFour.add(createButton(KeyboardConstants.SYMBOL_EMOJI, Color.WHITE, true, ""))
+        rowCharFour.add(createButton(KeyboardConstants.SYMBOL_SPACE, Color.WHITE, true, ""))
         rowCharFour.add(createButton(".", Color.WHITE, true, ""))
-        rowCharFour.add(createButton("\u21B5", Color.WHITE, true, ""))
+        rowCharFour.add(createButton(KeyboardConstants.SYMBOL_ENTER, Color.WHITE, true, ""))
 
         val rows = ArrayList<LinearLayout>()
         rows.add(createNumbersRow())
@@ -156,7 +163,14 @@ class AppKeyboard(context: Context, attributeSet: AttributeSet) :
 
         val rowCharThree = ArrayList<View>()
         if (showCapsButton)
-            rowCharThree.add(createButton("⇪", Color.DKGRAY, false, ""))
+            rowCharThree.add(
+                createButton(
+                    KeyboardConstants.SYMBOL_UP_ARROW_DASH,
+                    Color.DKGRAY,
+                    false,
+                    ""
+                )
+            )
         rowCharThree.add(createButton("z", Color.WHITE, true, ""))
         rowCharThree.add(createButton("x", Color.WHITE, true, ""))
         rowCharThree.add(createButton("c", Color.WHITE, true, ""))
@@ -164,16 +178,16 @@ class AppKeyboard(context: Context, attributeSet: AttributeSet) :
         rowCharThree.add(createButton("b", Color.WHITE, true, ""))
         rowCharThree.add(createButton("n", Color.WHITE, true, ""))
         rowCharThree.add(createButton("m", Color.WHITE, true, ""))
-        rowCharThree.add(createButton("⌫", Color.DKGRAY, false, ""))
+        rowCharThree.add(createButton(KeyboardConstants.SYMBOL_BACKSPACE, Color.DKGRAY, false, ""))
 
         val rowCharFour = ArrayList<View>()
         if (showSymbols)
             rowCharFour.add(createButton("? ;", Color.DKGRAY, false, ""))
         rowCharFour.add(createButton(",", Color.WHITE, true, ""))
-        rowCharFour.add(createButton("\u263A", Color.WHITE, true, ""))
-        rowCharFour.add(createButton(" ", Color.WHITE, true, ""))
+        rowCharFour.add(createButton(KeyboardConstants.SYMBOL_EMOJI, Color.WHITE, true, ""))
+        rowCharFour.add(createButton(KeyboardConstants.SYMBOL_SPACE, Color.WHITE, true, ""))
         rowCharFour.add(createButton(".", Color.WHITE, true, ""))
-        rowCharFour.add(createButton("\u21B5", Color.WHITE, true, ""))
+        rowCharFour.add(createButton(KeyboardConstants.SYMBOL_ENTER, Color.WHITE, true, ""))
 
         val rows = ArrayList<LinearLayout>()
         rows.add(createNumbersRow())
@@ -185,215 +199,60 @@ class AppKeyboard(context: Context, attributeSet: AttributeSet) :
         return rows
     }
 
-    private fun createSymbolRows1(): List<LinearLayout> {
+    private fun createSymbolsRows(): List<LinearLayout> {
         val rowSymbolOne = ArrayList<View>()
-        rowSymbolOne.add(createButton("&", Color.WHITE, true, ""))
         rowSymbolOne.add(createButton("@", Color.WHITE, true, ""))
-        rowSymbolOne.add(createButton("é", Color.WHITE, true, ""))
-        rowSymbolOne.add(createButton("è", Color.WHITE, true, ""))
-        rowSymbolOne.add(createButton("ê", Color.WHITE, true, ""))
-        rowSymbolOne.add(createButton("à", Color.WHITE, true, ""))
-        rowSymbolOne.add(createButton("â", Color.WHITE, true, ""))
-        rowSymbolOne.add(createButton("ù", Color.WHITE, true, ""))
-        rowSymbolOne.add(createButton("û", Color.WHITE, true, ""))
-        rowSymbolOne.add(createButton("ç", Color.WHITE, true, ""))
+        rowSymbolOne.add(createButton("#", Color.WHITE, true, ""))
+        rowSymbolOne.add(createButton("$", Color.WHITE, true, ""))
+        rowSymbolOne.add(createButton("_", Color.WHITE, true, ""))
+        rowSymbolOne.add(createButton("&", Color.WHITE, true, ""))
+        rowSymbolOne.add(createButton("-", Color.WHITE, true, ""))
+        rowSymbolOne.add(createButton("+", Color.WHITE, true, ""))
+        rowSymbolOne.add(createButton("(", Color.WHITE, true, ""))
+        rowSymbolOne.add(createButton(")", Color.WHITE, true, ""))
+        rowSymbolOne.add(createButton("/", Color.WHITE, true, ""))
 
         val rowSymbolTwo = ArrayList<View>()
-        rowSymbolTwo.add(createButton("+", Color.WHITE, true, ""))
-        rowSymbolTwo.add(createButton("-", Color.WHITE, true, ""))
-        rowSymbolTwo.add(createButton("/", Color.WHITE, true, ""))
         rowSymbolTwo.add(createButton("*", Color.WHITE, true, ""))
-        rowSymbolTwo.add(createButton(",", Color.WHITE, true, ""))
-        rowSymbolTwo.add(createButton(";", Color.WHITE, true, ""))
+        rowSymbolTwo.add(createButton("\"", Color.WHITE, true, ""))
+        rowSymbolTwo.add(createButton("'", Color.WHITE, true, ""))
         rowSymbolTwo.add(createButton(":", Color.WHITE, true, ""))
+        rowSymbolTwo.add(createButton(";", Color.WHITE, true, ""))
         rowSymbolTwo.add(createButton("!", Color.WHITE, true, ""))
         rowSymbolTwo.add(createButton("?", Color.WHITE, true, ""))
-        rowSymbolTwo.add(createButton(".", Color.WHITE, true, ""))
+        rowSymbolTwo.add(createButton("~", Color.WHITE, true, ""))
+        rowSymbolTwo.add(createButton("`", Color.WHITE, true, ""))
+        rowSymbolTwo.add(createButton("|", Color.WHITE, true, ""))
 
         val rowSymbolThree = ArrayList<View>()
-        rowSymbolThree.add(createButton("(", Color.WHITE, true, ""))
-        rowSymbolThree.add(createButton(")", Color.WHITE, true, ""))
-        rowSymbolThree.add(createButton("\"", Color.WHITE, true, ""))
-        rowSymbolThree.add(createButton("_", Color.WHITE, true, ""))
-        rowSymbolThree.add(createButton("%", Color.WHITE, true, ""))
-        rowSymbolThree.add(createButton("€", Color.WHITE, true, ""))
-        rowSymbolThree.add(createButton("\$", Color.WHITE, true, ""))
-        rowSymbolThree.add(createButton("=", Color.WHITE, true, ""))
+        rowSymbolThree.add(createButton("^", Color.WHITE, true, ""))
+        rowSymbolThree.add(createButton("{", Color.WHITE, true, ""))
+        rowSymbolThree.add(createButton("}", Color.WHITE, true, ""))
         rowSymbolThree.add(createButton("\\", Color.WHITE, true, ""))
-        rowSymbolThree.add(createButton("\'", Color.WHITE, true, ""))
-
+        rowSymbolThree.add(createButton("%", Color.WHITE, true, ""))
+        rowSymbolThree.add(createButton("[", Color.WHITE, true, ""))
+        rowSymbolThree.add(createButton("]", Color.WHITE, true, ""))
+        rowSymbolThree.add(createButton("<", Color.WHITE, true, ""))
+        rowSymbolThree.add(createButton(">", Color.WHITE, true, ""))
+        rowSymbolThree.add(
+            createButton(
+                KeyboardConstants.SYMBOL_BACKSPACE,
+                Color.DKGRAY,
+                false,
+                ""
+            )
+        )
         val rowSymbolFour = ArrayList<View>()
-        rowSymbolFour.add(createButton("123\nabc", Color.DKGRAY, false, ""))
-        rowSymbolFour.add(createButton("[", Color.WHITE, true, ""))
-        rowSymbolFour.add(createButton("]", Color.WHITE, true, ""))
-        rowSymbolFour.add(createButton(KeyboardConstants.SPACE, Color.WHITE, true, ""))
-        rowSymbolFour.add(createButton("<", Color.WHITE, true, ""))
-        rowSymbolFour.add(createButton(">", Color.WHITE, true, ""))
-        rowSymbolFour.add(createButton("⌫", Color.DKGRAY, false, ""))
-        rowSymbolFour.add(createButton("\u276F", Color.BLUE, false, KeyboardConstants.ARROW_1))
+        if (showSymbols)
+            rowSymbolFour.add(createButton(KeyboardConstants.SYMBOL_AA, Color.DKGRAY, false, ""))
+        rowSymbolFour.add(createButton(",", Color.WHITE, true, ""))
+        rowSymbolFour.add(createButton("=", Color.WHITE, true, ""))
+        rowSymbolFour.add(createButton(KeyboardConstants.SYMBOL_SPACE, Color.WHITE, true, ""))
+        rowSymbolFour.add(createButton(".", Color.WHITE, true, ""))
+        rowSymbolFour.add(createButton(KeyboardConstants.SYMBOL_ENTER, Color.WHITE, true, ""))
 
         val rows = ArrayList<LinearLayout>()
-        rows.add(createRow(rowSymbolOne))
-        rows.add(createRow(rowSymbolTwo))
-        rows.add(createRow(rowSymbolThree))
-        rows.add(createRow(rowSymbolFour))
-
-        return rows
-    }
-
-    private fun createSymbolRows2(): List<LinearLayout> {
-        val rowSymbolOne = ArrayList<View>()
-        rowSymbolOne.add(createButton("É", Color.WHITE, true, ""))
-        rowSymbolOne.add(createButton("È", Color.WHITE, true, ""))
-        rowSymbolOne.add(createButton("Ê", Color.WHITE, true, ""))
-        rowSymbolOne.add(createButton("Ë", Color.WHITE, true, ""))
-        rowSymbolOne.add(createButton("À", Color.WHITE, true, ""))
-        rowSymbolOne.add(createButton("Â", Color.WHITE, true, ""))
-        rowSymbolOne.add(createButton("Á", Color.WHITE, true, ""))
-        rowSymbolOne.add(createButton("Ù", Color.WHITE, true, ""))
-        rowSymbolOne.add(createButton("Û", Color.WHITE, true, ""))
-        rowSymbolOne.add(createButton("Ç", Color.WHITE, true, ""))
-
-        val rowSymbolTwo = ArrayList<View>()
-        rowSymbolTwo.add(createButton("ì", Color.WHITE, true, ""))
-        rowSymbolTwo.add(createButton("í", Color.WHITE, true, ""))
-        rowSymbolTwo.add(createButton("î", Color.WHITE, true, ""))
-        rowSymbolTwo.add(createButton("ï", Color.WHITE, true, ""))
-        rowSymbolTwo.add(createButton("ã", Color.WHITE, true, ""))
-        rowSymbolTwo.add(createButton("ä", Color.WHITE, true, ""))
-        rowSymbolTwo.add(createButton("á", Color.WHITE, true, ""))
-        rowSymbolTwo.add(createButton("å", Color.WHITE, true, ""))
-        rowSymbolTwo.add(createButton("æ", Color.WHITE, true, ""))
-        rowSymbolTwo.add(createButton("ë", Color.WHITE, true, ""))
-
-        val rowSymbolThree = ArrayList<View>()
-        rowSymbolThree.add(createButton("Ì", Color.WHITE, true, ""))
-        rowSymbolThree.add(createButton("Í", Color.WHITE, true, ""))
-        rowSymbolThree.add(createButton("Î", Color.WHITE, true, ""))
-        rowSymbolThree.add(createButton("Ï", Color.WHITE, true, ""))
-        rowSymbolThree.add(createButton("Ã", Color.WHITE, true, ""))
-        rowSymbolThree.add(createButton("Ä", Color.WHITE, true, ""))
-        rowSymbolThree.add(createButton("Å", Color.WHITE, true, ""))
-        rowSymbolThree.add(createButton("Æ", Color.WHITE, true, ""))
-        rowSymbolThree.add(createButton("|", Color.WHITE, true, ""))
-        rowSymbolThree.add(createButton("~", Color.WHITE, true, ""))
-
-        val rowSymbolFour = ArrayList<View>()
-        rowSymbolFour.add(createButton("\u276E", Color.BLUE, false, KeyboardConstants.ARROW_2))
-        rowSymbolFour.add(createButton("123\nabc", Color.DKGRAY, false, ""))
-        rowSymbolFour.add(createButton("{", Color.WHITE, true, ""))
-        rowSymbolFour.add(createButton("}", Color.WHITE, true, ""))
-        rowSymbolFour.add(createButton(KeyboardConstants.SPACE, Color.WHITE, true, ""))
-        rowSymbolFour.add(createButton("#", Color.WHITE, true, ""))
-        rowSymbolFour.add(createButton("⌫", Color.DKGRAY, false, ""))
-        rowSymbolFour.add(createButton("\u276F", Color.BLUE, false, KeyboardConstants.ARROW_3))
-
-        val rows = ArrayList<LinearLayout>()
-        rows.add(createRow(rowSymbolOne))
-        rows.add(createRow(rowSymbolTwo))
-        rows.add(createRow(rowSymbolThree))
-        rows.add(createRow(rowSymbolFour))
-
-        return rows
-    }
-
-    private fun createSymbolRows3(): List<LinearLayout> {
-        val rowSymbolOne = ArrayList<View>()
-        rowSymbolOne.add(createButton("ñ", Color.WHITE, true, ""))
-        rowSymbolOne.add(createButton("ò", Color.WHITE, true, ""))
-        rowSymbolOne.add(createButton("ó", Color.WHITE, true, ""))
-        rowSymbolOne.add(createButton("ô", Color.WHITE, true, ""))
-        rowSymbolOne.add(createButton("õ", Color.WHITE, true, ""))
-        rowSymbolOne.add(createButton("ö", Color.WHITE, true, ""))
-        rowSymbolOne.add(createButton("ú", Color.WHITE, true, ""))
-        rowSymbolOne.add(createButton("ü", Color.WHITE, true, ""))
-        rowSymbolOne.add(createButton("ý", Color.WHITE, true, ""))
-        rowSymbolOne.add(createButton("ÿ", Color.WHITE, true, ""))
-
-        val rowSymbolTwo = ArrayList<View>()
-        rowSymbolTwo.add(createButton("Ñ", Color.WHITE, true, ""))
-        rowSymbolTwo.add(createButton("Ò", Color.WHITE, true, ""))
-        rowSymbolTwo.add(createButton("Ó", Color.WHITE, true, ""))
-        rowSymbolTwo.add(createButton("Ô", Color.WHITE, true, ""))
-        rowSymbolTwo.add(createButton("Õ", Color.WHITE, true, ""))
-        rowSymbolTwo.add(createButton("Ö", Color.WHITE, true, ""))
-        rowSymbolTwo.add(createButton("Ú", Color.WHITE, true, ""))
-        rowSymbolTwo.add(createButton("Ü", Color.WHITE, true, ""))
-        rowSymbolTwo.add(createButton("Ý", Color.WHITE, true, ""))
-        rowSymbolTwo.add(createButton("§", Color.WHITE, true, ""))
-
-        val rowSymbolThree = ArrayList<View>()
-        rowSymbolThree.add(createButton("ª", Color.WHITE, true, ""))
-        rowSymbolThree.add(createButton("°", Color.WHITE, true, ""))
-        rowSymbolThree.add(createButton("²", Color.WHITE, true, ""))
-        rowSymbolThree.add(createButton("³", Color.WHITE, true, ""))
-        rowSymbolThree.add(createButton("¹", Color.WHITE, true, ""))
-        rowSymbolThree.add(createButton("º", Color.WHITE, true, ""))
-        rowSymbolThree.add(createButton("¼", Color.WHITE, true, ""))
-        rowSymbolThree.add(createButton("½", Color.WHITE, true, ""))
-        rowSymbolThree.add(createButton("¾", Color.WHITE, true, ""))
-        rowSymbolThree.add(createButton("´", Color.WHITE, true, ""))
-
-        val rowSymbolFour = ArrayList<View>()
-        rowSymbolFour.add(createButton("\u276E", Color.BLUE, false, KeyboardConstants.ARROW_4))
-        rowSymbolFour.add(createButton("123\nabc", Color.DKGRAY, false, ""))
-        rowSymbolFour.add(createButton("«", Color.WHITE, true, ""))
-        rowSymbolFour.add(createButton("»", Color.WHITE, true, ""))
-        rowSymbolFour.add(createButton(KeyboardConstants.SPACE, Color.WHITE, true, ""))
-        rowSymbolFour.add(createButton("^", Color.WHITE, true, ""))
-        rowSymbolFour.add(createButton("⌫", Color.DKGRAY, false, ""))
-        rowSymbolFour.add(createButton("\u276F", Color.BLUE, false, KeyboardConstants.ARROW_5))
-
-        val rows = ArrayList<LinearLayout>()
-        rows.add(createRow(rowSymbolOne))
-        rows.add(createRow(rowSymbolTwo))
-        rows.add(createRow(rowSymbolThree))
-        rows.add(createRow(rowSymbolFour))
-
-        return rows
-    }
-
-    private fun createSymbolRows4(): List<LinearLayout> {
-        val rowSymbolOne = ArrayList<View>()
-        rowSymbolOne.add(createButton("ø", Color.WHITE, true, ""))
-        rowSymbolOne.add(createButton("þ", Color.WHITE, true, ""))
-        rowSymbolOne.add(createButton("ð", Color.WHITE, true, ""))
-        rowSymbolOne.add(createButton("µ", Color.WHITE, true, ""))
-        rowSymbolOne.add(createButton("¢", Color.WHITE, true, ""))
-        rowSymbolOne.add(createButton("£", Color.WHITE, true, ""))
-        rowSymbolOne.add(createButton("¥", Color.WHITE, true, ""))
-        rowSymbolOne.add(createButton("÷", Color.WHITE, true, ""))
-        rowSymbolOne.add(createButton("×", Color.WHITE, true, ""))
-        rowSymbolOne.add(createButton("±", Color.WHITE, true, ""))
-
-        val rowSymbolTwo = ArrayList<View>()
-        rowSymbolTwo.add(createButton("Ø", Color.WHITE, true, ""))
-        rowSymbolTwo.add(createButton("Þ", Color.WHITE, true, ""))
-        rowSymbolTwo.add(createButton("Ð", Color.WHITE, true, ""))
-        rowSymbolTwo.add(createButton("ß", Color.WHITE, true, ""))
-        rowSymbolTwo.add(createButton("¶", Color.WHITE, true, ""))
-        rowSymbolTwo.add(createButton("¤", Color.WHITE, true, ""))
-        rowSymbolTwo.add(createButton("©", Color.WHITE, true, ""))
-        rowSymbolTwo.add(createButton("®", Color.WHITE, true, ""))
-        rowSymbolTwo.add(createButton("¬", Color.WHITE, true, ""))
-        rowSymbolTwo.add(createButton("¦", Color.WHITE, true, ""))
-
-        val rowSymbolThree = ArrayList<View>()
-        rowSymbolThree.add(createButton("¯", Color.WHITE, true, ""))
-        rowSymbolThree.add(createButton("`", Color.WHITE, true, ""))
-        rowSymbolThree.add(createButton("¨", Color.WHITE, true, ""))
-        rowSymbolThree.add(createButton("·", Color.WHITE, true, ""))
-        rowSymbolThree.add(createButton("¸", Color.WHITE, true, ""))
-        rowSymbolThree.add(createButton("¡", Color.WHITE, true, ""))
-        rowSymbolThree.add(createButton("¿", Color.WHITE, true, ""))
-
-        val rowSymbolFour = ArrayList<View>()
-        rowSymbolFour.add(createButton("\u276E", Color.BLUE, false, KeyboardConstants.ARROW_6))
-        rowSymbolFour.add(createButton("123\nabc", Color.DKGRAY, false, ""))
-        rowSymbolFour.add(createButton(KeyboardConstants.SPACE, Color.WHITE, true, ""))
-        rowSymbolFour.add(createButton("⌫", Color.DKGRAY, false, ""))
-
-        val rows = ArrayList<LinearLayout>()
+        rows.add(createNumbersRow())
         rows.add(createRow(rowSymbolOne))
         rows.add(createRow(rowSymbolTwo))
         rows.add(createRow(rowSymbolThree))
@@ -408,16 +267,11 @@ class AppKeyboard(context: Context, attributeSet: AttributeSet) :
         isTextBlack: Boolean,
         tag: String
     ): MaterialButton {
-        Log.d("test", "Width: ${KeyboardUtils.getScreenWidth()}")
-        Log.d("test", "Width: ${KeyboardUtils.getScreenWidth() / 10}")
+        //TODO: Update and validate button sizes in all screens
+        //TODO: Update the Space size
         val button = MaterialButton(context)
         button.isAllCaps = false
         button.textSize = 20.0f
-//        button.textSize = if (text == "123\nabc") {
-//            textSizeSmall
-//        } else {
-//            textSize
-//        }
         button.setTextColor(
             if (isTextBlack) {
                 context.getColor(R.color.black)
@@ -439,24 +293,14 @@ class AppKeyboard(context: Context, attributeSet: AttributeSet) :
         val dp5InPx = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2f, dm).toInt()
 
         val params = when (text) {
-            /*"abc", "ABC" -> {
-                LayoutParams(80, 65)
-            }
-            "? è" -> {
-                LayoutParams(70, 65)
-            }*/
-            KeyboardConstants.SPACE -> {
+            KeyboardConstants.SYMBOL_SPACE -> {
                 LayoutParams(180, dp85InPx)
             }
-            "123\nabc" -> {
-//                LayoutParams(70, 65)
-                LayoutParams(dp80InPx, dp85InPx)
-            }
+
             else -> {
                 LayoutParams(dp80InPx, dp85InPx)
             }
         }
-
         params.setMargins(dp5InPx, dp5InPx, dp5InPx, dp5InPx)
         button.layoutParams = params
         button.setPadding(0, 0, 0, 0)
@@ -486,45 +330,31 @@ class AppKeyboard(context: Context, attributeSet: AttributeSet) :
         val button = view as MaterialButton
         val value: String = (button.text as String)
         val tag: Any? = (button.tag)
-        if (value == "⌫") {
+        if (value == KeyboardConstants.SYMBOL_BACKSPACE) {
             val selectedText = inputConnection?.getSelectedText(0)
             if (TextUtils.isEmpty(selectedText)) {
                 inputConnection?.deleteSurroundingText(1, 0)
             } else {
                 inputConnection?.commitText("", 1)
             }
-        } else if (value == "⇧") {
+        } else if (value == KeyboardConstants.SYMBOL_UP_ARROW) {
             removeAllViews()
             addView(getKeyboardLayout(createLowerCaseRows()))
-        } else if (value == "⇪") {
+        } else if (value == KeyboardConstants.SYMBOL_UP_ARROW_DASH) {
             removeAllViews()
             addView(getKeyboardLayout(createUpperCaseRows()))
-        } else if (value == "? è") {
+        } else if (value == KeyboardConstants.SYMBOL_ENTER) {
+            inputConnection?.commitText("\n", 1)
+        } else if (value == KeyboardConstants.SYMBOL_EMOJI) {
+            Toast.makeText(context, "Show Emoji Layout", Toast.LENGTH_SHORT).show()
+        } else if (value == "? ;") {
             removeAllViews()
-            addView(getKeyboardLayout(createSymbolRows1()))
-        } else if (value == "123\nabc") {
+            addView(getKeyboardLayout(createSymbolsRows()))
+        } else if (value == KeyboardConstants.SYMBOL_AA) {
             removeAllViews()
             addView(getKeyboardLayout(createLowerCaseRows()))
-        } else if (value == "❯" && tag == KeyboardConstants.ARROW_1) {
-            removeAllViews()
-            addView(getKeyboardLayout(createSymbolRows2()))
-        } else if (value == "❮" && tag == KeyboardConstants.ARROW_2) {
-            removeAllViews()
-            addView(getKeyboardLayout(createSymbolRows1()))
-        } else if (value == "❯" && tag == KeyboardConstants.ARROW_3) {
-            removeAllViews()
-            addView(getKeyboardLayout(createSymbolRows3()))
-        } else if (value == "❮" && tag == KeyboardConstants.ARROW_4) {
-            removeAllViews()
-            addView(getKeyboardLayout(createSymbolRows2()))
-        } else if (value == "❯" && tag == KeyboardConstants.ARROW_5) {
-            removeAllViews()
-            addView(getKeyboardLayout(createSymbolRows4()))
-        } else if (value == "❮" && tag == KeyboardConstants.ARROW_6) {
-            removeAllViews()
-            addView(getKeyboardLayout(createSymbolRows3()))
-        } else if (value == KeyboardConstants.SPACE) {
-            inputConnection?.commitText(" ", 1)
+        } else if (value == KeyboardConstants.SYMBOL_SPACE) {
+            inputConnection?.commitText(KeyboardConstants.SYMBOL_SPACE, 1)
         } else {
             inputConnection?.commitText(value, 1)
             if (KeyboardConstants.CAPITAL_LETTERS.contains(value) && !showCaps) {

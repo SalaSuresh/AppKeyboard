@@ -8,9 +8,12 @@ The advantage of this library is to ristrict the user to enter any sensitive inp
   * Alphabets (Caps and Small)
   * Symbols
   * Smiles (In Progress)
+* Easy to customize
 
 ### Required Environment Setup
 Android Studio Flamingo | 2022.2.1 Java 11 or above
+
+### Implementation Guide
 
 ### Third-Party Libraries
 None
